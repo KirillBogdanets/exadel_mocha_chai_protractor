@@ -1,0 +1,20 @@
+[
+    {
+        "Block": "ExadelBlock"
+    },
+    {
+        "Block": "ServicesBlock"
+    },
+    {
+        "Block": "NewsBlock"
+    },
+    {
+        "Block": "OurWorkBlock"
+    },
+    {
+        "Block": "ClientslogoBlock"
+    },
+    {
+        "Block": "ContactUsBlock"
+    }
+]
