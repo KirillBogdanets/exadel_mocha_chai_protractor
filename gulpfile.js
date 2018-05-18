@@ -4,15 +4,18 @@ const util = require("gulp-util");
 const yargs = require("yargs").argv;
 const { protractor, webdriver_update_specific } = require("gulp-protractor");
 
-gulp.task("test:driver_update", webdriver_update_specific({
-    webdriverManagerArgs: ["--ie", "--chrome"]
-}));
+// gulp.task("test:driver_update", webdriver_update_specific({
+//     webdriverManagerArgs: ["--ie", "--chrome"]
+// }));
 
-gulp.task("test", ["test:driver_update"], () => {
+gulp.task("test", () => {
     console.log(`mocha_e2e/${yargs.tag||"*/*.js"}`);
     gulp.src([])
         .pipe(protractor({
-            configFile: path.resolve("./protractor.config.js")
+            configFile: path.resolve("./protractor.config.js"),
+            args: ["--specs", [
+                `mocha_e2e/${yargs.tag||"*/*.js"}`
+            ]]
         }))
         .on("end", function () {
             console.log("E2E Testing complete");

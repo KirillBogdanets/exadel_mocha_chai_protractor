@@ -12,19 +12,15 @@ const inViewPortHelper = async (coordinates, shouldNotBe) => {
     const innerHeight = await browser.executeScript("return window.innerHeight;");
 
     if (shouldNotBe) {
-        if (coordinates.y >= scrollTop && coordinates.y < scrollTop + innerHeight) {
-            throw new Error();
-        }
+        return expect(coordinates.y >= scrollTop && coordinates.y < scrollTop + innerHeight, "Element Is Visible.").to.not.true;
     } else {
-        if (!(coordinates.y >= scrollTop && coordinates.y < scrollTop + innerHeight)) {
-            throw new Error();
-        }
+        return expect(coordinates.y >= scrollTop && coordinates.y < scrollTop + innerHeight, "Element Is NOT Visible.").to.not.false;
     }
 };
 
 const isInViewPort = async (element, shouldNotBe) => {
     const coordinates = await parser.parser(element).getLocation();
-    
+
     return inViewPortHelper(coordinates, shouldNotBe);
 };
 

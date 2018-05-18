@@ -15,10 +15,32 @@ describe("HOME PAGE", () => {
         await browser.get(browser.baseUrl);
     });
 
-    outline(HomePageBlocks, (blocks) => {
-        it(`${blocks.Block} should be in vieport with all when user is scrolling down`, async () => {
-            await utils.scrollerToTheElement(`HomePage > ${blocks.Block}`);
-            await utils.isInViewPort(`HomePage > ${blocks.Block}`);
+    describe("PAGE TITLE AND URL VERIFICATION", () => {
+        it(`verify that Home Page url is equal to the ${browser.baseUrl}`, async () => {
+            const url = await browser.getCurrentUrl();
+
+            return expect(url).to.be.equal(browser.baseUrl);
+        });
+
+        it(`verify that Home Page title is equal to the 'Exadel | Global Enterprise Software & Tech Solutions'`, async () => {
+            const pageTitle = await browser.getTitle();
+
+            return expect(pageTitle).to.be.equal('Exadel | Global Enterprise Software & Tech Solutions');
+        });
+    });
+
+    describe("ELEMENTS VISIBILITY", () => {
+        outline(HomePageBlocks, (blocks) => {
+            it(`${blocks.Block} should be in viewport with all when user is scrolling down`, async () => {
+                outline(blocks.BlockElements, (elements) => {
+                    utils.scrollerToTheElement(`HomePage > ${blocks.Block}`);
+                    if (elements.EC === "viewport") {
+                        utils.isInViewPort(`HomePage > ${elements.Element}`);
+                    } else {
+                        browser.wait(utils.ECHelper(parser.parser(`HomePage > ${elements.Element}`), `${elements.EC}`), CUSTOM_TIMEOUT, `${elements.Element} is not ${elements.EC}`);
+                    }
+                });
+            });
         });
     });
 });

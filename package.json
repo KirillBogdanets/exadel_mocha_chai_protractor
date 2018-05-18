@@ -19,6 +19,7 @@
   "devDependencies": {
     "eslint": "^3.13.1",
     "gulp-protractor": "^4.1.0",
-    "mochawesome": "^3.0.2"
+    "mochawesome": "^3.0.2",
+    "mochawesome-screenshots": "^1.5.9"
   }
 }

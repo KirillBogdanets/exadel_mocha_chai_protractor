@@ -21,50 +21,43 @@ exports.config = {
     //     'ignoreProtectedModeSettings': true
     // }],
 
-    // specs: ['mocha_e2e/smoke/*.js}'],
-    specs: [
-        'mocha_e2e/smoke/*.js'
-      ],
+    // specs: [
+    //     `mocha_e2e/${yargs.tag||"*/*.js"}`
+    // ],
     // restartBrowserBetweenTests: true,
     onPrepare: function () {
         browser.ignoreSynchronization = true;
-        browser.driver.manage().window().maximize();  
+        browser.driver.manage().window().maximize();
     },
-    // onComplete: function () {
-    //     let options = {
-    //         theme: 'bootstrap',
-    //         // jsonDir: './output',
-    //         jsonFile: './output/cucumber.json',
-    //         output: './cucumber_report.html',
-    //         reportSuiteAsScenarios: true,
-    //         launchReport: true,
-    //         metadata: {
-    //             "Browser": "Chrome",
-    //             "Platform": "Windows 10",
-    //             "Parallel": "Scenarios",
-    //             "Executed": "Remote"
-    //         }
-    //     };
-
-    //     reporter.generate(options);
-    // },
-    // beforeLaunch: function () {
-    //     const dir = path.resolve("./output/");
-    //     console.log("Cleaning 'output' folder.");
-    //     if (!fs.existsSync(dir)) {
-    //         fs.mkdirSync(dir);
-    //     } else {
-    //         fs.readdirSync(dir).forEach(file => fs.unlinkSync(path.resolve(dir + "/" + file)));
-    //     }
-    // },
+    beforeLaunch: function () {
+        const dir = path.resolve("./customReportDir/");
+        console.log("Cleaning 'customReportDir' folder.");
+        if (!fs.existsSync(dir)) {
+            fs.mkdirSync(dir);
+        } else {
+            fs.readdirSync(dir).forEach(file => {
+                if (file.startsWith("customReportName")) {
+                    fs.unlinkSync(path.resolve(dir + "/" + file))
+                }
+            });
+        }
+    },
     allScriptsTimeout: 200000,
     getPageTimeout: 100000,
     framework: 'mocha',
     mochaOpts: {
-        reporter: 'mochawesome',
+        reporter: 'mochawesome-screenshots',
         reporterOptions: {
-            reportFilename: 'customReportFilename',
-            quiet: true,
+            reportDir: 'customReportDir',
+            reportName: 'customReportName',
+            reportTitle: 'EXADEL_MOCHA_CHAI_PROTRACTOR_FRAMEWORK',
+            reportPageTitle: 'EXADEL_MOCHA_CHAI_PROTRACTOR_FRAMEWORK',
+            takePassedScreenshot: false,
+            clearOldScreenshots: true,
+            shortScrFileNames: false,
+            jsonReport: false,
+            multiReport: false
+            // multiReport: true
         },
         timeout: 250000
     }
