@@ -26,5 +26,3 @@ gulp.task("test", () => {
             process.exit(1);
         });
 });
-
-gulp.task("kill", () => TasksKiller.kill(["chromedriver", "iedriverserver"]));
