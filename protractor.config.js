@@ -46,6 +46,7 @@ exports.config = {
     getPageTimeout: 100000,
     framework: 'mocha',
     mochaOpts: {
+        // reporter: 'nyan',
         reporter: 'mochawesome-screenshots',
         reporterOptions: {
             reportDir: 'customReportDir',

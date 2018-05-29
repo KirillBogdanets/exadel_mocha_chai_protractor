@@ -9,12 +9,12 @@ const { protractor, webdriver_update_specific } = require("gulp-protractor");
 // }));
 
 gulp.task("test", () => {
-    console.log(`mocha_e2e/${yargs.tag||"*/*.js"}`);
+    console.log(`mocha_e2e/${yargs.spec||"*/*.js"}`);
     gulp.src([])
         .pipe(protractor({
             configFile: path.resolve("./protractor.config.js"),
             args: ["--specs", [
-                `mocha_e2e/${yargs.tag||"*/*.js"}`
+                `mocha_e2e/${yargs.spec||"*/*.js"}`
             ]]
         }))
         .on("end", function () {
