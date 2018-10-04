@@ -45,20 +45,20 @@ exports.config = {
     getPageTimeout: 100000,
     framework: 'mocha',
     mochaOpts: {
-        // reporter: 'nyan',
-        reporter: 'mochawesome-screenshots',
-        reporterOptions: {
-            reportDir: 'customReportDir',
-            reportName: 'customReportName',
-            reportTitle: 'EXADEL_MOCHA_CHAI_PROTRACTOR_FRAMEWORK',
-            reportPageTitle: 'EXADEL_MOCHA_CHAI_PROTRACTOR_FRAMEWORK',
-            takePassedScreenshot: false,
-            clearOldScreenshots: true,
-            shortScrFileNames: false,
-            jsonReport: false,
-            multiReport: false
-            // multiReport: true
-        },
-        timeout: 250000
+        reporter: 'nyan',
+        // reporter: 'mochawesome-screenshots',
+        // reporterOptions: {
+        //     reportDir: 'customReportDir',
+        //     reportName: 'customReportName',
+        //     reportTitle: 'EXADEL_MOCHA_CHAI_PROTRACTOR_FRAMEWORK',
+        //     reportPageTitle: 'EXADEL_MOCHA_CHAI_PROTRACTOR_FRAMEWORK',
+        //     takePassedScreenshot: false,
+        //     clearOldScreenshots: true,
+        //     shortScrFileNames: false,
+        //     jsonReport: false,
+        //     // multiReport: false
+        //     multiReport: true
+        // },
+        // timeout: 250000
     }
 };
